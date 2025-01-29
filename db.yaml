@@ -20,7 +20,7 @@
       name: 
       - PyMySQL
       - cryptography #for password if we want to use
-      executable: 3.9 #depends on python version
+      executable: pip3.9 #depends on python version
 
 #check passwd is already set or not
 
