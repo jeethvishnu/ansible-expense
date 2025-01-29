@@ -3,6 +3,10 @@
   become: yes
   vars:
     login_host: db.vjeeth.site
+  vars_prompt:
+  - name: root passwd
+    prompt: enter passwd
+    private: false
   tasks:
   - name: install mysql server
     ansible.builtin.dnf: 
@@ -27,7 +31,7 @@
   - name: set up root passwd check DB connection
     community.mysql.mysql_info:
       login_user: root
-      login_password: ExpenseApp@1
+      login_password: "{{root passwd}}"
       login_host: "{{login_host}}"
       filter: version
     ignore_errors: yes
@@ -36,3 +40,7 @@
   - name: print output
     ansible.builtin.debug:
       msg: "{{mysql_connection_output}}"    
+
+  - name: setup root passwd
+    ansible.builtin.command: "mysql_secure_installation --set-root-pass {{root passwd}}"
+      when: mysql_connection_output.failed is true
