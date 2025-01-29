@@ -3,10 +3,11 @@
   become: yes
   vars:
     login_host: db.vjeeth.site
-    - name: install mysql server
-      ansible.builtin.dnf: 
-        name: mysql-server
-        state: latest
+  tasks:
+  - name: install mysql server
+    ansible.builtin.dnf: 
+      name: mysql-server
+      state: latest
 
   - name: start and enable mysql server
     ansible.builtin.service:
