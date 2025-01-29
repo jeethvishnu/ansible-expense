@@ -14,6 +14,13 @@
       name: mysqld
       state: started
       enabled: yes
+#this one you can get in ansible modules /ansible/collections/ansible/builtin/pip_module.html
+  - name: install mysql python dependency
+    ansible.builtin.pip:
+      name: 
+      - PyMySQL
+      - cryptography #for password if we want to use
+      executable: 3.9 #depends on python version
 
 #check passwd is already set or not
 
