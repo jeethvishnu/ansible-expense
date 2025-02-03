@@ -4,7 +4,7 @@
   vars:
     login_host: db.vjeeth.site
   vars_prompt:
-  - name: root passwd
+  - name: root_passwd
     prompt: enter passwd
     private: false
   tasks:
@@ -31,7 +31,7 @@
   - name: set up root passwd check DB connection
     community.mysql.mysql_info:
       login_user: root
-      login_password: "{{root passwd}}"
+      login_password: "{{root_passwd}}"
       login_host: "{{login_host}}"
       filter: version
     ignore_errors: yes
@@ -42,5 +42,5 @@
       msg: "output: {{mysql_connection_output}}"    
 
   - name: setup root passwd
-    ansible.builtin.command: "mysql_secure_installation --set-root-pass {{root passwd}}"
+    ansible.builtin.command: "mysql_secure_installation --set-root-pass {{root_passwd}}"
     when: mysql_connection_output.failed is true
