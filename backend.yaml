@@ -64,7 +64,7 @@
       login_user: root
       login_password: "{{login_password}}"
       login_host: "{{login_host}}"
-      target: /app/schema/backend.service #for file location
+      target: /app/schema/backend.sql #for file location
       state: import
       name: all
 
