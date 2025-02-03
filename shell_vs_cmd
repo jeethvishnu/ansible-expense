@@ -1,0 +1,12 @@
+1 ansible shell vs ansible command module
+2
+3 shell module
+4 command module
+5
+6 shell module --> it will use shell environment, means we can use redirections >, pipes | and other shell variables I
+7
+8 command module --> it will just run the commands, but can't use shell environment like > pipe | or variables.
+
+if a simple plain command with out variables, redirections, pipes, etc. we can use command module..
+
+if you want to run shell script inside ansible or complex commands with redirections then we can use shell module
